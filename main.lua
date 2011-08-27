@@ -8,6 +8,7 @@
 -- Copyright (C) 2010 ANSCA Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------
 
+display.setStatusBar( display.HiddenStatusBar )
 local screenW, screenH = display.contentWidth, display.contentHeight
 local friction = 0.8
 local gravity = .09
