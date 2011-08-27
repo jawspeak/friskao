@@ -7,6 +7,10 @@
 -- Sample code is MIT licensed, see http://developer.anscamobile.com/code/license
 -- Copyright (C) 2010 ANSCA Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------
+local physics = require("physics")
+physics.start()
+physics.setGravity(0, 6)
+-- physics.setDrawMode('hybrid')
 
 display.setStatusBar( display.HiddenStatusBar )
 local screenW, screenH = display.contentWidth, display.contentHeight
@@ -97,6 +101,33 @@ function trackVelocity(event)
 	prevX = ball.x
 	prevY = ball.y
 end			
+
+function randomFace()
+	choice = math.random(100)
+	if (choice < 65) then
+		return 'kao1_100x100.png'
+	elseif (choice < 75) then
+		return 'kao2_100x100.png'
+	elseif (choice < 75) then
+		return 'nan1_100x100.png'
+	else
+		return 'nan2_100x100.png'
+	end
+end
+
+local balls = {}
+local randomBall = function()
+	local ball
+	ball = display.newImage(randomFace())
+	ball.x = 40 + math.random( 380 ); ball.y = -40
+	physics.addBody( ball, { density=0.6, friction=0.6, bounce=0.6, radius=19 } )
+	ball.angularVelocity = math.random(800) - 400
+	ball.isSleepingAllowed = false
+
+	balls[#balls + 1] = ball
+end
+
+timer.performWithDelay( 750, randomBall, 24 )
 
 ball:addEventListener("touch", startDrag)
 Runtime:addEventListener("enterFrame", onMoveCircle)
