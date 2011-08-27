@@ -18,9 +18,11 @@ local wheelbarrow = display.newImage( "wheelbarrow.png", 0, 200 )
 wheelbarrow.name = "wheelbarrow"
 physics.addBody( wheelbarrow, "static", { friction=0.3, bounce=0.1, shape={-40,-30, 40,-30, 40,20, -40,20}})
 
-
 local ground = display.newImage( "grass.png", 0, 300, true )
 physics.addBody( ground, "static", { friction=0.5, bounce=0.9, shape={-240,-10, 240,-10, 240,10, -240,10}})
+
+pointCounter = display.newText("0", 10, 10, "Helvetica", 24)
+
 
 function randomFace()
 	choice = math.random(100)
@@ -81,6 +83,9 @@ local function onCollision( event )
          head = getHead(event)
          head:removeSelf()
          audio.play(powerUpSound)
+
+         local points = tonumber(pointCounter.text)
+         pointCounter.text = (points + 1)
          return
       end
    end
