@@ -23,18 +23,18 @@ physics.addBody( ground, "static", { friction=0.5, bounce=0.9, shape={-240,-10, 
 
 pointCounter = display.newText("0", 10, 10, "Helvetica", 24)
 
+heads = {}
+heads[0] = 'kao1_50x50.png'
+heads[1] = 'jon1_50x50.png'
+heads[2] = 'nan1_50x50.png'
+heads[3] = 'damon1_50x50.png'
+heads[4] = 'kao2_50x50.png'
+heads[5] = 'jon2_50x50.png'
+heads[6] = 'nan2_50x50.png'
+heads[7] = 'damon2_50x50.png'
 
 function randomFace()
-	choice = math.random(100)
-	if (choice < 65) then
-		return 'kao1_100x100.png'
-	elseif (choice < 75) then
-		return 'kao2_100x100.png'
-	elseif (choice < 75) then
-		return 'nan1_100x100.png'
-	else
-		return 'nan2_100x100.png'
-	end
+	return heads[math.random(4)]
 end
 
 local balls = {}
