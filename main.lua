@@ -10,11 +10,14 @@
 local physics = require("physics")
 physics.start()
 physics.setGravity(0, 6)
--- physics.setDrawMode('hybrid')
+--physics.setDrawMode('hybrid')
 
 display.setStatusBar( display.HiddenStatusBar )
-local screenW, screenH = display.contentWidth, display.contentHeight
-	
+
+local ground = display.newImage( "grass.png", 0, 300, true )
+physics.addBody( ground, "static", { friction=0.5, bounce=0.9, shape={-240,-10, 240,-10, 240,10, -240,10}})
+ 
+
 function randomFace()
 	choice = math.random(100)
 	if (choice < 65) then
@@ -33,7 +36,7 @@ local randomBall = function()
 	local ball
 	ball = display.newImage(randomFace())
 	ball.x = 40 + math.random( 380 ); ball.y = -40
-	physics.addBody( ball, { density=0.6, friction=0.6, bounce=0.6, radius=19 } )
+	physics.addBody( ball, { density=0.6, friction=0.6, bounce=0.6, radius=29 } )
 	ball.angularVelocity = math.random(800) - 400
 	ball.isSleepingAllowed = false
 
