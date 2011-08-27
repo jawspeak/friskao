@@ -89,4 +89,12 @@ local function onCollision( event )
       audio.play(sounds[math.random(3)]);
    end
 end
+
+local function onTouch( event )
+   if (event.phase == "moved") then 
+      wheelbarrow.x = event.x
+   end
+end
+
+Runtime:addEventListener( "touch", onTouch)
 Runtime:addEventListener( "collision", onCollision )
