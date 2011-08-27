@@ -91,10 +91,11 @@ local function onCollision( event )
 end
 
 local function onTouch( event )
+   local wheelbarrow = event.target
    if (event.phase == "moved") then 
       wheelbarrow.x = event.x
    end
 end
 
-Runtime:addEventListener( "touch", onTouch)
+wheelbarrow:addEventListener( "touch", onTouch)
 Runtime:addEventListener( "collision", onCollision )
