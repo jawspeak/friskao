@@ -16,6 +16,9 @@ display.setStatusBar( display.HiddenStatusBar )
 
 local ground = display.newImage( "grass.png", 0, 300, true )
 physics.addBody( ground, "static", { friction=0.5, bounce=0.9, shape={-240,-10, 240,-10, 240,10, -240,10}})
+
+--local leftside = display.newSquare(0,0,100,100)
+--physics.addBody( ground, "static", { friction=0.5, bounce=0.9, shape={-240,-10, 240,-10, 240,10, -240,10}})
  
 
 function randomFace()
@@ -44,3 +47,14 @@ local randomBall = function()
 end
 
 timer.performWithDelay( 750, randomBall, 24 )
+
+sounds = {}
+sounds[0] = audio.loadSound("freesoundpongblip1_ogg.ogg");
+sounds[1] = audio.loadSound("freesoundpongblip2_ogg.ogg");
+sounds[2] = audio.loadSound("freesoundpongblip3_ogg.ogg");
+local function onCollision( event )
+	if ( event.phase == "began" ) then
+		audio.play(sounds[math.random(3)]);
+	end
+end
+Runtime:addEventListener( "collision", onCollision )
